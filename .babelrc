@@ -1,0 +1,19 @@
+{
+  "presets": [
+    ["env", { "modules": false }],
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-object-assign",
+    "transform-vue-jsx",
+    "syntax-dynamic-import"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [ "istanbul" ]
+    }
+  }
+}
