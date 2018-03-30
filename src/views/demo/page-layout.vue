@@ -44,7 +44,7 @@
     <b-table :data="tableConfig.data" :columns="tableConfig.columns" :show-select="true" :show-handle="true" :select-fixed="true"
       :handle-fixed="true" :pagination="tableConfig.pagination" :orderNumber="true" @click-item="selectTableItem" @change-page="changePage"
       @select-change="selectChange">
-      <template slot="operations" scope="scope">
+      <template slot="operations" slot-scope="scope">
         <span @click="edit(scope.item)">编辑</span>
         <span @click="delete(scope.item)">删除</span>
         <span v-if="!scope.item.disable" @click="disable(scope.item)">禁用</span>

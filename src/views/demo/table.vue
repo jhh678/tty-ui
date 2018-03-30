@@ -1,38 +1,30 @@
-/**
-* @file 表格组件 应用实例
-* @author jhh678
-* @date 2017/9/27
-*/
+/*
+ * @File: 表格示例
+ * @Author: jhh678
+ * @Date: 2018-03-28 15:38:53
+ * @Last Modified by: jhh678
+ * @Last Modified time: 2018-03-28 16:09:16
+ */
+
 <template>
-  <div class="container-fluid">
+  <div class="sub-page-wrap">
     <h3 style="text-align: center; margin: 20px 0">常用的表格有下面两个</h3>
     <section class="panel panel-default">
       <div class="panel-heading">最基础形态小表格</div>
       <div class="panel-body">
-        <div style="width: 800px">
-          <b-table :data="tableData"
-                     :columns="tableColumns"
-                     :show-handle="true"
-                     :tdHeight="40"
-                     :tableId="demo1Id"
-                     @td-brand="clickStatus"
-                     @click-item="tableSelectItem">
-            <template slot="operations" scope="scope">
-              <span @click="edit(scope.item)">编辑</span>
-              <span @click="delete(scope.item)">删除</span>
-              <span @click="disable(scope.item)">禁用</span>
-            </template>
-          </b-table>
-        </div>
-        <b-dropdown ref="dropdown" style="display:inline-block">
-          <button data-role="trigger" class="btn btn-default dropdown-toggle" type="button">
-            <span>导出</span>
-            <span class="caret"></span>
-          </button>
-          <template slot="dropdown">
-            <li  v-for="item in dropdownData" :key="item" @click="selectType(item)"><a role="button">{{item}}</a></li>
+        <b-table :data="tableData"
+                    :columns="tableColumns"
+                    :show-handle="true"
+                    :tdHeight="40"
+                    :tableId="demo1Id"
+                    @td-brand="clickStatus"
+                    @click-item="tableSelectItem">
+          <template slot="operations" slot-scope="scope">
+            <span @click="edit(scope.item)">编辑</span>
+            <span @click="delete(scope.item)">删除</span>
+            <span @click="disable(scope.item)">禁用</span>
           </template>
-        </b-dropdown>
+        </b-table>
       </div>
     </section>
     <!--左右固定-->
@@ -50,7 +42,7 @@
                      :orderNumber="true"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -74,7 +66,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -97,7 +89,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -122,7 +114,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -147,7 +139,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -172,7 +164,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -197,7 +189,7 @@
                      :pagination="pagination"
                      @click-item="tableSelectItem"
                      @change-page="changePage">
-            <template slot="operations" scope="scope">
+            <template slot="operations" slot-scope="scope">
               <span @click="edit(scope.item)">编辑</span>
               <span @click="edit(scope.item)">删除</span>
               <span @click="edit(scope.item)">禁用</span>
@@ -210,135 +202,133 @@
 </template>
 
 <script>
-  import BTable from '@/components/table/table'
-  import tableData from './data/tabledata'
-  import BDropdown from '@/components/dropdown/dropdown'
-  const columns1 = [
-    {
-      title: '机构编号',
-      key: 'number',
-      width: 85,
-      textAlign: 'left'
-    },
-    {
-      title: '机构名称',
-      key: 'name',
-      width: 292,
-      textAlign: 'left',
-      textLine: 2,
-      selectText: true
-    },
-    {
-      title: '类型',
-      key: 'type',
-      width: 180,
-      textAlign: 'center'
-    },
-    {
-      title: '状态',
-      key: 'brand',
-      width: 82,
-      textAlign: 'center',
-      click: true
-    }
-  ]
-  const columns2 = [
-    {
-      title: '商品编号',
-      key: 'number',
-      width: 150,
-      textAlign: 'center'
-    },
-    {
-      title: '商品名称',
-      key: 'name',
-      width: 250,
-      textAlign: 'left',
-      textLine: 2,
-      selectText: true
-    },
-    {
-      title: '商品类别',
-      key: 'type',
-      width: 150,
-      textAlign: 'right'
-    },
-    {
-      title: '品牌',
-      key: 'brand',
-      width: 180,
-      textAlign: 'center'
-    },
-    {
-      title: '规格',
-      key: 'specifications',
-      width: 150,
-      textAlign: 'left'
-    },
-    {
-      title: '图片',
-      key: 'image',
-      type: 'img',
-      width: 76,
-      textAlign: 'center'
-    },
-    {
-      title: '零售价',
-      key: 'retailPrice',
-      width: 150,
-      textAlign: 'left'
-    },
-    {
-      title: '基本单位',
-      key: 'unit',
-      width: 150,
-      textAlign: 'left'
-    },
-    {
-      title: '测试测试',
-      key: 'brand',
-      width: 150,
-      textAlign: 'left'
-    }
-  ]
-  export default{
-    components: {
-      BTable,
-      BDropdown
-    },
-    data() {
-      return {
-        demo1Id: 'demo1',
-        dropdownData: ['xls', 'json', 'txt', 'xml', 'doc', 'image', 'pdf'],
-        tableData: tableData.data1,
-        tableColumns: columns1,
-        tableColumns2: columns2,
-        tableData2: tableData.data2,
-        pagination: {
-          maxSize: 5,
-          total: 88,
-          hidePagination: false,
-          pageSizes: [10, 20, 25, 50, 100, 200, 500]
-        }
+import BTable from '@/components/table/table'
+import tableData from './data/tabledata'
+import BDropdown from '@/components/dropdown/dropdown'
+const columns1 = [
+  {
+    title: '机构编号',
+    key: 'number',
+    width: 85,
+    textAlign: 'left'
+  },
+  {
+    title: '机构名称',
+    key: 'name',
+    width: 292,
+    textAlign: 'left',
+    textLine: 2,
+    selectText: true
+  },
+  {
+    title: '类型',
+    key: 'type',
+    width: 180,
+    textAlign: 'center'
+  },
+  {
+    title: '状态',
+    key: 'brand',
+    width: 82,
+    textAlign: 'center',
+    click: true
+  }
+]
+const columns2 = [
+  {
+    title: '商品编号',
+    key: 'number',
+    width: 150,
+    textAlign: 'center'
+  },
+  {
+    title: '商品名称',
+    key: 'name',
+    width: 250,
+    textAlign: 'left',
+    textLine: 2,
+    selectText: true
+  },
+  {
+    title: '商品类别',
+    key: 'type',
+    width: 150,
+    textAlign: 'right'
+  },
+  {
+    title: '品牌',
+    key: 'brand',
+    width: 180,
+    textAlign: 'center'
+  },
+  {
+    title: '规格',
+    key: 'specifications',
+    width: 150,
+    textAlign: 'left'
+  },
+  {
+    title: '图片',
+    key: 'image',
+    type: 'img',
+    width: 76,
+    textAlign: 'center'
+  },
+  {
+    title: '零售价',
+    key: 'retailPrice',
+    width: 150,
+    textAlign: 'left'
+  },
+  {
+    title: '基本单位',
+    key: 'unit',
+    width: 150,
+    textAlign: 'left'
+  },
+  {
+    title: '测试测试',
+    key: 'brand',
+    width: 150,
+    textAlign: 'left'
+  }
+]
+export default {
+  components: {
+    BTable,
+    BDropdown
+  },
+  data() {
+    return {
+      demo1Id: 'demo1',
+      dropdownData: ['xls', 'json', 'txt', 'xml', 'doc', 'image', 'pdf'],
+      tableData: tableData.data1,
+      tableColumns: columns1,
+      tableColumns2: columns2,
+      tableData2: tableData.data2,
+      pagination: {
+        maxSize: 5,
+        total: 88,
+        hidePagination: false,
+        pageSizes: [10, 20, 25, 50, 100, 200, 500]
       }
+    }
+  },
+  methods: {
+    tableSelectItem() {
+      console.log(123)
     },
-    methods: {
-      tableSelectItem() {
-        console.log(123)
-      },
-      edit(e) {
-        console.log(e)
-      },
-      changePage(e) {
-        console.log(e)
-      },
-      selectType (type) {
-      },
-      clickStatus (data) {
-        console.log('aaa', data)
-      }
+    edit(e) {
+      console.log(e)
+    },
+    changePage(e) {
+      console.log(e)
+    },
+    clickStatus(data) {
+      console.log('aaa', data)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

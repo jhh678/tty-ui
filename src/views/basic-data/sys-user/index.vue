@@ -53,7 +53,7 @@
               :tableId="tableConfig.tableId"
               @select-change="selectChange"
               @change-page="changePage">
-      <template slot="operations" scope="scope">
+      <template slot="operations" slot-scope="scope">
         <span @click="edit(scope.item)">编辑</span>
         <span @click="del(scope.item)">删除</span>
         <span @click="able(scope.item)" v-if="scope.item.status == 0">启用</span>

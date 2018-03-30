@@ -5,7 +5,7 @@
       :items='organizeList' 
       :columns='columns'
       ref="orgTable">
-      <template slot="operations" scope="scope">
+      <template slot="operations" slot-scope="scope">
         <span @click="edit(scope.item)">编辑</span>
         <span @click="remove(scope.item)">删除</span>
         <span @click="toForbid(scope.item)" v-if = "scope.item.status == 1">禁用</span>

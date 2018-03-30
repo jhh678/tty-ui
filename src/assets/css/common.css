@@ -14,6 +14,10 @@ body:before {
   display: none;
 }
 
+.panel .container-fluid {
+  padding: 15px;
+}
+
 .ui-nowrap {
   display: -webkit-box;
   overflow: hidden;
@@ -50,7 +54,6 @@ body:before {
 .option-btns-wrap .btn:not(:first-child) {
   margin-left: 10px;
 }
-
 
 /* transition css */
 
@@ -154,7 +157,6 @@ body:before {
   transition: opacity .3s cubic-bezier(.55, 0, .1, 1)
 }
 
-
 /* scrollbar css */
 
 .b-scrollbar {
@@ -220,7 +222,6 @@ body:before {
 .b-scrollbar__bar.is-vertical>div {
   width: 100%
 }
-
 
 /* iconfont css */
 

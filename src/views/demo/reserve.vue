@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="sub-page-wrap">
     <h3>敬请期待！！！</h3>
   </div>
 </template>

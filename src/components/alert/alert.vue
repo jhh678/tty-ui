@@ -10,76 +10,76 @@
 </template>
 
 <script>
-  export default {
-    name: 'BAlert',
-    componentName: 'BAlert',
-    props: {
-      show: {
-        Boolean,
-        'default': false
-      },
-      closable: {
-        type: Boolean,
-        'default': true
-      },
-      duration: {
-        type: Number,
-        'default': 3000
-      },
-      type: {
-        type: String,
-        'default': 'warning'
-      },
-      message: {
-        type: String,
-        'default': ''
-      }
+export default {
+  name: 'BAlert',
+  componentName: 'BAlert',
+  props: {
+    show: {
+      Boolean,
+      'default': false
     },
-    data() {
-      return {
-        timeout: 0,
-        visible: true
-      }
+    closable: {
+      type: Boolean,
+      'default': true
     },
-    computed: {
-      realShow() {
-        return this.show === this.visible
-      },
-      alertClass() {
-        return `alert alert-${this.type}`
-      }
+    duration: {
+      type: Number,
+      'default': 3000
     },
-    watch: {
-      'realShow'(newVal, oldVal) {
-        if (newVal && this.duration > 0) {
-          this.timeout = setTimeout(this.closeAlert, this.duration)
-        }
-      }
+    type: {
+      type: String,
+      'default': 'info'
     },
-    methods: {
-      closeAlert() {
-        clearTimeout(this.timeout)
-        this.visible = !this.show
-        this.$emit('close')
-      }
-    },
-    destroyed() {
-      clearTimeout(this.timeout)
+    message: {
+      type: String,
+      'default': ''
     }
+  },
+  data() {
+    return {
+      timeout: 0,
+      visible: true
+    }
+  },
+  computed: {
+    realShow() {
+      return this.show === this.visible
+    },
+    alertClass() {
+      return `alert alert-${this.type}`
+    }
+  },
+  watch: {
+    'realShow'(newVal, oldVal) {
+      if (newVal && this.duration > 0) {
+        this.timeout = setTimeout(this.closeAlert, this.duration)
+      }
+    }
+  },
+  methods: {
+    closeAlert() {
+      clearTimeout(this.timeout)
+      this.visible = !this.show
+      this.$emit('close')
+    }
+  },
+  destroyed() {
+    clearTimeout(this.timeout)
   }
+}
 </script>
 <style scoped>
-  .alert {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    border-radius: 0;
-  }
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  border-radius: 0;
+}
 
-  .alert-fade-enter,
-  .alert-fade-leave-active {
-    opacity: 0
-  }
+.alert-fade-enter,
+.alert-fade-leave-active {
+  opacity: 0;
+}
 </style>

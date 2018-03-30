@@ -1,4 +1,11 @@
-/** * @file * @author jhh678 * @date 2017/9/20 */
+/*
+ * @File: 表格组件
+ * @Author: jhh678
+ * @Date: 2018-03-28 16:05:39
+ * @Last Modified by: jhh678
+ * @Last Modified time: 2018-03-28 16:07:45
+ */
+
 <template>
   <div id="tableComponent" ref="tableScroll">
     <!--内容 -->
@@ -25,8 +32,7 @@
               <col style="width: 50px; min-width: 50px;" />
             </colgroup>
             <tbody>
-              <tr v-for="(item, index) in data" :key="index" @mouseenter="mouseEnter(index)" @mouseout="mouseOut(index)" :class="toTrClass(index)"
-                :style="{height: tdHeight + 'px'}">
+              <tr v-for="(item, index) in data" :key="index" @mouseenter="mouseEnter(index)" @mouseout="mouseOut(index)" :class="toTrClass(index)" :style="{height: tdHeight + 'px'}">
                 <td>
                   <b-checkbox v-model="checkedItems" :label="index" :show-label="false" @change="checkedSingleItem"></b-checkbox>
                 </td>
@@ -85,7 +91,7 @@
                 <td v-if="orderNumber" style="text-align: center">{{calculateOrderNumber(index)}}</td>
 
                 <td v-for="(item, index1) in columns" :key="index1" :class="'text' + item.textAlign" v-ellipsis="dataItem[item.key] + ',' +item.textLine"
-                  v-html="showTableImage(dataItem[item.key], index, item.key)" @click="clickTd(dataItem, item)"></td>
+                  v-html="showTdContent(dataItem, item, index)" @click="clickTd(dataItem, item)"></td>
 
                 <td :class="isDisAbled(index) ? 'textDisable' : ''" v-if="showHandle" class="handleAction">
                   <slot name="operations" :item="dataItem">
@@ -204,6 +210,10 @@ export default {
       type: Boolean,
       default: false
     },
+    abledKey: {
+      type: String,
+      default: 'status'
+    },
     pagination: {
       type: Object,
       default: function () {
@@ -315,7 +325,7 @@ export default {
     },
     // 鼠标滑过 class
     toTrClass(index) {
-      if (this.data[index] && (this.data[index].disable || this.data[index].status === '0')) {
+      if (this.data[index] && (this.data[index].disable || this.data[index][this.abledKey] === '0')) {
         return 'trDisable'
       }
       if (this.hoverIndex === index) {
@@ -356,7 +366,7 @@ export default {
     },
     // 判断是否可用
     isDisAbled(index) {
-      return this.data[index] ? (this.data[index].disable || this.data[index].status === '0') : false
+      return this.data[index] ? (this.data[index].disable || this.data[index][this.abledKey] === '0') : false
     },
     // 分页变动
     changePage(page) {
@@ -372,7 +382,6 @@ export default {
       }
       if (isSelect) {
         this.data.forEach((item, index) => {
-          // let disable = !!(item.disable || item.status === '0')
           if (this.checkedItems.indexOf(index) < 0) {
             _this.checkedItems.push(index)
           }
@@ -431,20 +440,21 @@ export default {
         return index + 1
       }
     },
-    // 显示图片
-    showTableImage(value, index, key) {
-      if (/http/.test(value)) {
-        let num = this.isDisAbled(index) ? 0.6 : 1
-        return `<img style="width:36px; height: 36px; opacity: ${num}" src="${value}">`
-      } else if (key === 'status') {
-        return value === '0' ? '禁用' : '启用'
+    // 显示自定义列内容
+    showTdContent(row, column, index) {
+      if (column.template) {
+        if (typeof column.template === 'function') {
+          return column.template(row, column, index)
+        } else {
+          return column.template
+        }
       } else {
-        return value
+        return row[column.key]
       }
     },
     // 配置点击单元格
     clickTd(data, item) {
-      if (item.click && (data.status !== '0' || data.status !== 0)) {
+      if (item.click && (data[this.abledKey] !== '0' || data[this.abledKey] !== 0)) {
         this.$emit('td-' + item.key, data)
       }
     }
@@ -470,9 +480,6 @@ export default {
       let select = []
       let num = 0
       arr.forEach((item, index) => {
-        // if(item.status === '1' && !item.disable) {
-        //   num += 1
-        // }
         num += 1
       })
       if (val.length !== num) {
@@ -503,6 +510,7 @@ export default {
 }
 
 table {
+  table-layout: fixed;
   border-collapse: collapse;
   tr {
     box-sizing: border-box;
@@ -592,7 +600,7 @@ td {
 }
 
 .table-scroll {
-  overflow: scroll;
+  overflow: auto;
   overflow-y: hidden;
   .table-header {
     z-index: 1;

@@ -1,6 +1,13 @@
-/** * @file 表单组件 demo * @author jhh678 * @date 2017/9/27 */
+/*
+ * @File: 表单示例
+ * @Author: jhh678
+ * @Date: 2018-03-28 15:42:06
+ * @Last Modified by:   jhh678
+ * @Last Modified time: 2018-03-28 15:42:06
+ */
+
 <template>
-  <div class="container-fluid">
+  <div class="sub-page-wrap">
     <div class="form-demo-header">
       <h3>Form 表单</h3>
       <div class="text-muted">由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据</div>

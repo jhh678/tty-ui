@@ -4,7 +4,7 @@ const AlertConstructor = Vue.extend(require('./alert.vue'))
 let alertPool = []
 
 let getAnInstance = () => {
-  if(alertPool.length > 0) {
+  if (alertPool.length > 0) {
     let instance = alertPool[0]
     alertPool.splice(0, 1)
     return instance
@@ -15,18 +15,18 @@ let getAnInstance = () => {
 }
 
 let returnAnInstance = instance => {
-  if(instance) {
+  if (instance) {
     alertPool.push(instance)
   }
 }
 
 let removeDom = event => {
-  if(event.target.parentNode) {
+  if (event.target.parentNode) {
     event.target.parentNode.removeChild(event.target)
   }
 }
 
-AlertConstructor.prototype.close = function() {
+AlertConstructor.prototype.close = function () {
   this.visible = true
   this.$el.addEventListener('transitionend', removeDom)
   this.closed = true
@@ -34,7 +34,7 @@ AlertConstructor.prototype.close = function() {
 }
 
 let Alert = (options = {}) => {
-  let duration = options.duration || 3000
+  let duration = options.duration === 0 ? 0 : options.duration || 3000
   let type = options.type || 'warning'
   let closable = options.closable || true
 
@@ -47,12 +47,12 @@ let Alert = (options = {}) => {
   instance.closable = closable
 
   document.body.appendChild(instance.$el)
-  Vue.nextTick(function() {
+  Vue.nextTick(function () {
     instance.visible = false
     instance.$el.removeEventListener('transitionend', removeDom)
-    if(duration > 0) {
-      instance.timer = setTimeout(function() {
-        if(instance.closed) return
+    if (duration > 0) {
+      instance.timer = setTimeout(function () {
+        if (instance.closed) return
         instance.close()
       }, duration)
     }
@@ -60,4 +60,5 @@ let Alert = (options = {}) => {
   return instance
 }
 
+Vue.prototype.$alert = Alert
 export default Alert

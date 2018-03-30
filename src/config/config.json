@@ -11,17 +11,13 @@
   "menuList": [{
       "name": "组件示例",
       "icon": "icon-search",
+      "link": "/demo",
       "sub": [{
           "groupName": "组件说明",
           "pages": [{
-              "name": "使用说明",
-              "link": "/demo/index"
-            },
-            {
-              "name": "消息组件示例",
-              "link": "/demo/message"
-            }
-          ]
+            "name": "使用说明",
+            "link": "/demo/index"
+          }]
         },
         {
           "groupName": "基本组件",
@@ -38,16 +34,16 @@
         {
           "groupName": "表单组件",
           "pages": [{
+              "name": "输入框",
+              "link": "/demo/input"
+            },
+            {
               "name": "单选框",
               "link": "/demo/radio"
             },
             {
               "name": "多选框",
               "link": "/demo/checkbox"
-            },
-            {
-              "name": "输入框",
-              "link": "/demo/input"
             },
             {
               "name": "选择器",
@@ -58,16 +54,20 @@
               "link": "/demo/switch"
             },
             {
-              "name": "时间选择器",
-              "link": "/demo/timepicker"
-            },
-            {
               "name": "日期选择器",
               "link": "/demo/datepicker"
             },
             {
+              "name": "时间选择器",
+              "link": "/demo/timepicker"
+            },
+            {
               "name": "日期时间选择器",
               "link": "/demo/datetimepicker"
+            },
+            {
+              "name": "表单",
+              "link": "/demo/form"
             }
           ]
         },
@@ -98,16 +98,16 @@
               "link": "/demo/alert"
             },
             {
-              "name": "加载",
-              "link": "/demo/loading"
-            },
-            {
               "name": "消息提示",
               "link": "/demo/message"
             },
             {
               "name": "弹窗",
-              "link": "/demo/messagebox"
+              "link": "/demo/message-box"
+            },
+            {
+              "name": "加载",
+              "link": "/demo/loading"
             }
           ]
         },
@@ -135,7 +135,7 @@
           "groupName": "其他",
           "pages": [{
               "name": "对话框",
-              "link": "/demo/dialog"
+              "link": "/demo/modal"
             },
             {
               "name": "文字提示",
@@ -144,10 +144,6 @@
             {
               "name": "弹出框",
               "link": "/demo/popover"
-            },
-            {
-              "name": "下拉菜单",
-              "link": "/demo/dropdown"
             },
             {
               "name": "走马灯",

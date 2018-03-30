@@ -61,7 +61,7 @@
              :select-fixed="true"
              :handle-fixed="true"
              :pagination="tableConfig.pagination">
-          <template slot="operations" scope="scope">
+          <template slot="operations" slot-scope="scope">
             <span @click="deleteItem">删除</span>
           </template>
         </b-table>

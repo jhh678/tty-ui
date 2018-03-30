@@ -46,7 +46,7 @@
              @click-item="selectTableItem"
              @change-page="changePage"
              @select-change="selectChange">
-      <template slot="operations" scope="scope">
+      <template slot="operations" slot-scope="scope">
         <span @click="edit(scope.item)">编辑</span>
         <span @click="deleteBtn(scope.item)">删除</span>
       </template>

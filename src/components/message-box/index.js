@@ -213,7 +213,7 @@ MessageBox.close = () => {
 }
 
 Vue.prototype.$msgbox = MessageBox
-Vue.prototype.$alert = MessageBox.alert
+Vue.prototype.$alertbox = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
 

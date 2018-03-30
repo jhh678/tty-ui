@@ -1,6 +1,13 @@
-/** * @file 表单组件 demo * @author jhh678 * @date 2017/9/27 */
+/*
+ * @File: 树形控件
+ * @Author: jhh678
+ * @Date: 2018-03-28 16:47:05
+ * @Last Modified by: jhh678
+ * @Last Modified time: 2018-03-28 16:47:37
+ */
+
 <template>
-  <div class="container-fluid">
+  <div class="sub-page-wrap">
     <div class="form-demo-header">
       <h3>Tree 树形控件</h3>
       <div class="text-muted">用清晰的层级结构展示信息，可展开或折叠。</div>
@@ -100,7 +107,7 @@
       <div class="panel-body">
         <b-tree :data="accordionData" :props="defaultProps" accordion @node-click="handleNodeClick" ref="treeFilter"></b-tree>
       </div>
-    </section>      
+    </section>
   </div>
 </template>
 

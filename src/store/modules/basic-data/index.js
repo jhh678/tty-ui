@@ -1,11 +1,11 @@
-/**
- * @file 基本资料模块
- * @author jhh678
- * @date 2017/9/22
+/*
+ * @Author: jhh678
+ * @Date: 2018-03-28 11:09:58
+ * @Last Modified by:   jhh678
+ * @Last Modified time: 2018-03-28 11:09:58
  */
-import {
-  phpApi
-} from '@/service/rest-api'
+
+import api from '@/service/rest-api'
 import {
   flattenTree
 } from '@/utils'
@@ -35,7 +35,7 @@ const actions = {
     commit,
     state
   }) {
-    const res = await phpApi('getOrg').post()
+    const res = await api('getOrg').post()
     if (res.data.data) {
       commit('getOrg', res.data.data)
     }
@@ -46,7 +46,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getOrgTree').post(prams)
+    const res = await api('getOrgTree').post(prams)
     if (res.data.code === 200) {
       let r = []
       if (res.data.data && res.data.data.length > 0) {
@@ -64,7 +64,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('editOrg').post(prams)
+    const res = await api('editOrg').post(prams)
     return res.data
   },
   // 删除组织
@@ -72,7 +72,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deleteOrg').post(prams)
+    const res = await api('deleteOrg').post(prams)
     return res.data.data
   },
   // 新增组织
@@ -80,7 +80,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addOrg').post(prams)
+    const res = await api('addOrg').post(prams)
     return res.data
   },
   // 禁用组织
@@ -88,7 +88,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('disableOrg').post(prams)
+    const res = await api('disableOrg').post(prams)
     return res.data
   },
   // 启用组织
@@ -96,7 +96,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('enableOrg').post(prams)
+    const res = await api('enableOrg').post(prams)
     return res.data.data
   },
   // 获取银行组织列表
@@ -104,7 +104,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getBank').post(prams)
+    const res = await api('getBank').post(prams)
     return res.data
   },
   // 添加银行
@@ -112,7 +112,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addBank').post(prams)
+    const res = await api('addBank').post(prams)
     return res.data
   },
   // 修改银行
@@ -120,7 +120,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('updateBank').post(prams)
+    const res = await api('updateBank').post(prams)
     return res.data
   },
   // 删除银行
@@ -128,7 +128,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deleteBank').post(prams)
+    const res = await api('deleteBank').post(prams)
     return res.data
   },
   // 新增部门
@@ -136,7 +136,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addDep').post(prams)
+    const res = await api('addDep').post(prams)
     return res.data
   },
   // 编辑部门
@@ -144,7 +144,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('updateDep').post(prams)
+    const res = await api('updateDep').post(prams)
     return res.data.data
   },
   // 删除部门
@@ -152,7 +152,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deleteDep').post(prams)
+    const res = await api('deleteDep').post(prams)
     return res.data
   },
   // 启用部门
@@ -160,7 +160,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('enableDep').post(prams)
+    const res = await api('enableDep').post(prams)
     return res.data.data
   },
   // 禁用部门
@@ -168,7 +168,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('disableDep').post(prams)
+    const res = await api('disableDep').post(prams)
     return res.data
   },
   // 获取部门详情
@@ -176,7 +176,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getDep').post(prams)
+    const res = await api('getDep').post(prams)
     return res.data
   },
   // 获取部门树
@@ -184,7 +184,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getDepTree').post(prams)
+    const res = await api('getDepTree').post(prams)
     return res.data
   },
   // 获取职员列表
@@ -192,7 +192,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getEmployee').post(prams)
+    const res = await api('getEmployee').post(prams)
     if (res.data.data) {
       commit('getEmployee', res.data.data)
     }
@@ -203,7 +203,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addEmployee').post(prams)
+    const res = await api('addEmployee').post(prams)
     return res.data
   },
   // 编辑职员
@@ -211,7 +211,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('editEmployee').post(prams)
+    const res = await api('editEmployee').post(prams)
     return res.data
   },
   // 编辑职员详情
@@ -219,7 +219,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('detailEmployee').post(prams)
+    const res = await api('detailEmployee').post(prams)
     return res.data
   },
   // 删除职员
@@ -227,7 +227,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deletEmployee').post(prams)
+    const res = await api('deletEmployee').post(prams)
     return res.data
   },
   // 获取系统用户列表
@@ -235,7 +235,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getSysUser').post(prams)
+    const res = await api('getSysUser').post(prams)
     return res.data
   },
   // 系统用户详情
@@ -243,7 +243,7 @@ const actions = {
     commit,
     state
   }) {
-    const res = await phpApi('sysUserDetail').post()
+    const res = await api('sysUserDetail').post()
     return res.data
   },
   // 添加系统用户
@@ -251,7 +251,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addSysUser').post(prams)
+    const res = await api('addSysUser').post(prams)
     return res.data
   },
   // 修改系统用户
@@ -259,7 +259,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('updateSysUser').post(prams)
+    const res = await api('updateSysUser').post(prams)
     return res.data
   },
   // 删除系统用户
@@ -267,7 +267,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deleteSysUser').post(prams)
+    const res = await api('deleteSysUser').post(prams)
     return res.data
   },
   // 启用系统用户
@@ -275,7 +275,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('enableSysUser').post(prams)
+    const res = await api('enableSysUser').post(prams)
     return res.data
   },
   // 禁用系统用户
@@ -283,7 +283,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('disableSysUser').post(prams)
+    const res = await api('disableSysUser').post(prams)
     return res.data
   },
   // 重置密码
@@ -291,7 +291,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('resetPassword').post(prams)
+    const res = await api('resetPassword').post(prams)
     return res.data
   },
   // 禁用职员
@@ -299,7 +299,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('disableEmployee').post(prams)
+    const res = await api('disableEmployee').post(prams)
     return res.data
   },
   // 启用职员
@@ -307,7 +307,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('enableEmployeer').post(prams)
+    const res = await api('enableEmployeer').post(prams)
     return res.data
   },
   // 获取角色管理列表
@@ -315,7 +315,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getRole').post(prams)
+    const res = await api('getRole').post(prams)
     if (res.data.code === 200) {
       let r = []
       if (res.data.data.list && res.data.data.list.length > 0) {
@@ -333,7 +333,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('getUserRole').post(prams)
+    const res = await api('getUserRole').post(prams)
     if (res.data.code === 200) {
       // 数据平扁化
       let r = []
@@ -351,7 +351,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('permissionRole').post(prams)
+    const res = await api('permissionRole').post(prams)
     return res.data
   },
   // 编辑时角色获取权限
@@ -359,7 +359,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('permissionSonRole').post(prams)
+    const res = await api('permissionSonRole').post(prams)
     return res.data
   },
   // 删除角色
@@ -367,7 +367,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('deleteRole').post(prams)
+    const res = await api('deleteRole').post(prams)
     return res.data
   },
   // 添加角色
@@ -375,7 +375,7 @@ const actions = {
     commit,
     state
   }, prams) {
-    const res = await phpApi('addRole').post(prams)
+    const res = await api('addRole').post(prams)
     return res.data
   }
 }

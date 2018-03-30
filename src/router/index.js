@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-03-15 11:41:02
+ * @Last Modified time: 2018-03-30 17:46:55
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -47,8 +47,8 @@ const StatisticalAnalysis = () =>
 
 /* 基础资料 */
 // const BasicData = () => import(/* webpackChunkName: "basic-data" */ '@/views/basic-data/index')
-const RoleAuth = () =>
-  import (/* webpackChunkName: "basic-data" */ '@/views/basic-data/role-auth') // 角色权限
+// const RoleAuth = () =>
+//   import (/* webpackChunkName: "basic-data" */ '@/views/basic-data/role-auth') // 角色权限
 const SysUser = () =>
   import (/* webpackChunkName: "basic-data" */ '@/views/basic-data/sys-user') // 系统用户
 const OrgChart = () =>
@@ -72,37 +72,105 @@ const WarehouseMgr = () =>
 const IndexDemo = () =>
   import (/* webpackChunkName: "demo" */ '@/views/demo/index')
 
+/* demo layout */
+const LayoutDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/layout')
+
 /* demo button */
 const ButtonDemo = () =>
   import (/* webpackChunkName: "demo" */ '@/views/demo/button')
 
-// demo table
-const TableDemo = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/table-demo')
+// demo input
+const InputDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/input')
 
-// demo tree
-const Tree = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/tree-demo')
+// demo radio
+const RadioDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/radio')
+
+// demo checkbox
+const CheckboxDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/checkbox')
+
+// demo select
+const SelectDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/select')
+
+// demo switch
+const SwitchDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/switch')
+
+// demo datepicker
+const DatepickerDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/datepicker')
+
+// demo timepicker
+const TimepickerDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/timepicker')
+
+// demo datetimepicker
+const DatetimepickerDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/datetimepicker')
 
 // demo form
 const FormDemo = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/form-demo')
+  import (/* webpackChunkName: "demo" */ '@/views/demo/form')
 
-// demo page layout
-const PageLayoutDemo = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/page-layout-demo')
+// demo table
+const TableDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/table')
 
-// demo page layout
-const TreeTabel = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/tree-table')
+// demo tag
+const TagDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/tag')
 
-// demo messagebox
-const MessageBoxDemo = () =>
-  import (/* webpackChunkName: "demo" */ '@/views/demo/message-box-demo')
+// demo tree
+const TreeDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/tree')
+
+// demo pagination
+const PaginationDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/pagination')
+
+// demo alert
+const AlertDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/alert')
 
 // demo message
 const MessageDemo = () =>
   import (/* webpackChunkName: "demo" */ '@/views/demo/message')
+
+// demo messagebox
+const MessageBoxDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/message-box')
+
+// demo loading
+const LoadingDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/loading')
+
+// demo dropdown
+const DropdownDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/dropdown')
+
+// demo modal
+const ModalDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/modal')
+
+// demo tooltip
+const TooltipDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/tooltip')
+
+// demo popover
+const PopoverDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/popover')
+
+// demo page layout
+const PageLayoutDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/page-layout')
+
+// demo page layout
+const TreeTabel = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/tree-table')
 
 // demo reserve
 const ReserveDemo = () =>
@@ -209,16 +277,6 @@ let router = new Router({
         name: '统计分析'
       }
     },
-
-    // 基础资料
-    {
-      path: '/basic-data/role-auth',
-      component: RoleAuth,
-      meta: {
-        hasMaster: true,
-        name: '角色管理'
-      }
-    },
     {
       path: '/basic-data/sys-user',
       component: SysUser,
@@ -302,27 +360,83 @@ let router = new Router({
       }
     },
     {
+      path: '/demo/layout',
+      component: LayoutDemo,
+      meta: {
+        hasMaster: true,
+        name: '布局'
+      }
+    },
+    {
       path: '/demo/button',
       component: ButtonDemo,
       meta: {
         hasMaster: true,
-        name: 'Button按钮'
+        name: '按钮'
       }
     },
     {
-      path: '/demo/table',
-      component: TableDemo,
+      path: '/demo/input',
+      component: InputDemo,
       meta: {
         hasMaster: true,
-        name: '表格组件demo'
+        name: '输入框'
       }
     },
     {
-      path: '/demo/tree',
-      component: Tree,
+      path: '/demo/radio',
+      component: RadioDemo,
       meta: {
         hasMaster: true,
-        name: 'Tree Demo'
+        name: '单选框'
+      }
+    },
+    {
+      path: '/demo/checkbox',
+      component: CheckboxDemo,
+      meta: {
+        hasMaster: true,
+        name: '多选框'
+      }
+    },
+    {
+      path: '/demo/select',
+      component: SelectDemo,
+      meta: {
+        hasMaster: true,
+        name: '选择器'
+      }
+    },
+    {
+      path: '/demo/switch',
+      component: SwitchDemo,
+      meta: {
+        hasMaster: true,
+        name: '开关'
+      }
+    },
+    {
+      path: '/demo/datepicker',
+      component: DatepickerDemo,
+      meta: {
+        hasMaster: true,
+        name: '日期选择器'
+      }
+    },
+    {
+      path: '/demo/timepicker',
+      component: TimepickerDemo,
+      meta: {
+        hasMaster: true,
+        name: '时间选择器'
+      }
+    },
+    {
+      path: '/demo/datetimepicker',
+      component: DatetimepickerDemo,
+      meta: {
+        hasMaster: true,
+        name: '日期时间选择器'
       }
     },
     {
@@ -330,23 +444,47 @@ let router = new Router({
       component: FormDemo,
       meta: {
         hasMaster: true,
-        name: '表单demo'
+        name: '表单'
       }
     },
     {
-      path: '/demo/page-layout',
-      component: PageLayoutDemo,
+      path: '/demo/table',
+      component: TableDemo,
       meta: {
         hasMaster: true,
-        name: '页面布局demo'
+        name: '表格'
       }
     },
     {
-      path: '/demo/tree-table',
-      component: TreeTabel,
+      path: '/demo/tag',
+      component: TagDemo,
       meta: {
         hasMaster: true,
-        name: '树形表格demo'
+        name: '标签'
+      }
+    },
+    {
+      path: '/demo/tree',
+      component: TreeDemo,
+      meta: {
+        hasMaster: true,
+        name: '树形控件'
+      }
+    },
+    {
+      path: '/demo/pagination',
+      component: PaginationDemo,
+      meta: {
+        hasMaster: true,
+        name: '分页'
+      }
+    },
+    {
+      path: '/demo/alert',
+      component: AlertDemo,
+      meta: {
+        hasMaster: true,
+        name: '警告'
       }
     },
     {
@@ -354,7 +492,7 @@ let router = new Router({
       component: MessageDemo,
       meta: {
         hasMaster: true,
-        name: '消息提示demo'
+        name: '消息提示'
       }
     },
     {
@@ -362,7 +500,63 @@ let router = new Router({
       component: MessageBoxDemo,
       meta: {
         hasMaster: true,
-        name: '提示框demo'
+        name: '弹框'
+      }
+    },
+    {
+      path: '/demo/loading',
+      component: LoadingDemo,
+      meta: {
+        hasMaster: true,
+        name: '加载'
+      }
+    },
+    {
+      path: '/demo/dropdown',
+      component: DropdownDemo,
+      meta: {
+        hasMaster: true,
+        name: '下拉菜单'
+      }
+    },
+    {
+      path: '/demo/modal',
+      component: ModalDemo,
+      meta: {
+        hasMaster: true,
+        name: '对话框'
+      }
+    },
+    {
+      path: '/demo/tooltip',
+      component: TooltipDemo,
+      meta: {
+        hasMaster: true,
+        name: '文字提示'
+      }
+    },
+    {
+      path: '/demo/popover',
+      component: PopoverDemo,
+      meta: {
+        hasMaster: true,
+        name: '弹出框'
+      }
+    },
+    {
+      path: '/demo/page-layout',
+      component: PageLayoutDemo,
+      meta: {
+        hasMaster: true,
+        name: '页面布局'
+      }
+    },
+    {
+      path: '/demo/tree-table',
+      component: TreeTabel,
+      meta: {
+        hasMaster: true,
+        name: '树形表格'
       }
     },
     {

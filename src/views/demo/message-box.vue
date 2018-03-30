@@ -14,11 +14,11 @@
         <button class="btn btn-link" @click="openAlert">点击打开Message Box(alert)</button>
         <div class="panel panel-default">
           <div class="panel-body">
-            调用$alert方法即可打开消息提示，它模拟了系统的 alert，无法通过按下 ESC 或点击框外关闭。此例中接收了两个参数，message和title。值得一提的是，窗口被关闭后，它默认会返回一个Promise对象便于进行后续操作的处理。若不确定浏览器是否支持Promise，可自行引入第三方 polyfill 或像本例一样使用回调进行后续处理。            
+            调用$alert方法即可打开消息提示，它模拟了系统的 alert，无法通过按下 ESC 或点击框外关闭。此例中接收了两个参数，message和title。值得一提的是，窗口被关闭后，它默认会返回一个Promise对象便于进行后续操作的处理。若不确定浏览器是否支持Promise，可自行引入第三方 polyfill 或像本例一样使用回调进行后续处理。
           </div>
         </div>
         <pre>
-          this.$alert('这是一段内容', '标题名称', {
+          this.$alertbox('这是一段内容', '标题名称', {
             confirmButtonText: '确定',
             callback: action => {
               console.log('alert closed')
@@ -151,7 +151,7 @@
           </div>
         </div>
         <pre>
-          this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+          this.$alertbox('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
             dangerouslyUseHTMLString: true
           })
         </pre>
@@ -160,12 +160,12 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">全局方法</h4>
-        <p>现已经全局引入，Vue.prototype 添加如下全局方法：$msgbox, $alert, $confirm 和 $prompt。因此在 Vue instance 中可以采用本页面中的方式调用 MessageBox。调用参数为：</p>
+        <p>现已经全局引入，Vue.prototype 添加如下全局方法：$msgbox, $alertbox, $confirm 和 $prompt。因此在 Vue instance 中可以采用本页面中的方式调用 MessageBox。调用参数为：</p>
       </div>
       <div class="panel-body">
         <ul>
           <li>$msgbox(options)</li>
-          <li>$alert(message, title, options) 或 $alert(message, options)</li>
+          <li>$alertbox(message, title, options) 或 $alertbox(message, options)</li>
           <li>$confirm(message, title, options) 或 $confirm(message, options)</li>
           <li>$prompt(message, title, options) 或 $prompt(message, options)</li>
         </ul>
@@ -180,7 +180,7 @@
         <pre>import MessageBox from '@/components/message-box'</pre>
         <p>那么对应于上述四个全局方法的调用方法依次为：MessageBox, MessageBox.alert, MessageBox.confirm 和 MessageBox.prompt，调用参数与全局方法相同。</p>
       </div>
-    </div>    
+    </div>
   </div>
 </template>
 
@@ -191,7 +191,7 @@ export default {
   },
   methods: {
     openAlert() {
-      this.$alert('这是一段内容', '标题名称', {
+      this.$alertbox('这是一段内容', '标题名称', {
         confirmButtonText: '确定',
         callback: action => {
           console.log('alert closed')
@@ -265,7 +265,7 @@ export default {
       })
     },
     openAlertWithHtml() {
-      this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+      this.$alertbox('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
         dangerouslyUseHTMLString: true
       })
     }
