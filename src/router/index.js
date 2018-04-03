@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-03-30 17:46:55
+ * @Last Modified time: 2018-04-02 16:40:36
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -163,6 +163,14 @@ const TooltipDemo = () =>
 // demo popover
 const PopoverDemo = () =>
   import (/* webpackChunkName: "demo" */ '@/views/demo/popover')
+
+// demo carousel
+const CarouselDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/carousel')
+
+// demo collapse
+const CollapseDemo = () =>
+  import (/* webpackChunkName: "demo" */ '@/views/demo/collapse')
 
 // demo page layout
 const PageLayoutDemo = () =>
@@ -541,6 +549,22 @@ let router = new Router({
       meta: {
         hasMaster: true,
         name: '弹出框'
+      }
+    },
+    {
+      path: '/demo/carousel',
+      component: CarouselDemo,
+      meta: {
+        hasMaster: true,
+        name: '走马灯'
+      }
+    },
+    {
+      path: '/demo/collapse',
+      component: CollapseDemo,
+      meta: {
+        hasMaster: true,
+        name: '折叠面板'
       }
     },
     {
