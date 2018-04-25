@@ -40,7 +40,10 @@ export default {
   },
   props: {
     data: {
-      type: Array
+      type: Array,
+      default() {
+        return []
+      }
     },
     emptyText: {
       type: String,

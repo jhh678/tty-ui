@@ -3,7 +3,7 @@
  * @Author: jhh678
  * @Date: 2018-03-28 16:47:05
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-03-28 16:47:37
+ * @Last Modified time: 2018-04-03 11:48:38
  */
 
 <template>
@@ -360,7 +360,7 @@ export default {
       if (node.level === 0) {
         return resolve([{ name: 'region' }])
       }
-      if (node.level > 2) return resolve([])
+      if (node.level > 3) return resolve([])
 
       setTimeout(() => {
         const data = [{
