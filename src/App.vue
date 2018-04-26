@@ -96,7 +96,7 @@ export default {
   },
   data() {
     return {
-      userName: sessionStore.get('userInfo').userName,
+      userName: sessionStore.get('userInfo') ? sessionStore.get('userInfo').userName : '',
       menuList: menuList
     }
   },

@@ -2,8 +2,9 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-04-02 16:40:36
+ * @Last Modified time: 2018-04-26 15:31:08
  */
+var path = require('path')
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
@@ -187,6 +188,7 @@ const ReserveDemo = () =>
 Vue.use(Router)
 let router = new Router({
   mode: 'history',
+  base: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, '../../dist/build/') : '/',
   routes: [{
       path: '*',
       component: Error404,
