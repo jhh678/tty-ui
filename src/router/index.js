@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-04-26 15:53:49
+ * @Last Modified time: 2018-04-26 16:01:49
  */
 
 import Vue from 'vue'
@@ -188,7 +188,7 @@ const ReserveDemo = () =>
 Vue.use(Router)
 let router = new Router({
   mode: 'history',
-  base: '/tty-ui/',
+  base: process.env.NODE_ENV === 'production' ? '/tty-ui/dist/build/' : '/',
   routes: [{
       path: '*',
       component: Error404,
