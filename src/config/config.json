@@ -1,12 +1,12 @@
 {
   "development": {
-    "apiOrigin": "http://rapapi.org/mockjsdata/31083"
+    "apiOrigin": "//rapapi.org/mockjsdata/31083"
   },
   "test": {
-    "apiOrigin": "http://rapapi.org/mockjsdata/31083"
+    "apiOrigin": "//rapapi.org/mockjsdata/31083"
   },
   "production": {
-    "apiOrigin": "http://rapapi.org/mockjsdata/31083"
+    "apiOrigin": "//rapapi.org/mockjsdata/31083"
   },
   "menuList": [{
       "name": "组件示例",
