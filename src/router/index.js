@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-04-26 16:01:49
+ * @Last Modified time: 2018-05-15 13:39:41
  */
 
 import Vue from 'vue'
@@ -610,9 +610,9 @@ router.beforeEach(async (to, from, next) => {
     next()
   } else {
     if (auth.isLogined()) {
-      if (await auth.getUserInfo()) {
-        next()
-      }
+      // if (await auth.getUserInfo()) {
+      next()
+      // }
     } else {
       auth.goLogin()
     }

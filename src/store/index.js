@@ -18,6 +18,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    userInfo: {},
     openedTabs: [{
       name: '首页',
       path: '/home'

@@ -26,6 +26,9 @@
   import {
     sessionStore
   } from '@/utils'
+  import {
+    mapActions
+  } from 'vuex'
 
   export default {
     data() {
@@ -35,6 +38,9 @@
       }
     },
     methods: {
+      ...mapActions([
+        'updateUserInfo'
+      ]),
       foucs(opt) {
         this[opt] = false
       },
@@ -78,6 +84,12 @@
         // })
 
         sessionStore.set('token', 'sgggsgsgshddgdgdrgd34d')
+        sessionStore.set('userInfo', {
+          phone: this.phone
+        })
+        this.updateUserInfo({
+          phone: this.phone
+        })
         if (this.$route.query.router) {
           this.$router.push(this.$route.query.router)
         } else {
