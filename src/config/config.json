@@ -1,6 +1,6 @@
 {
   "development": {
-    "apiOrigin": "//rapapi.org/mockjsdata/31083"
+    "apiOrigin": "http://rapapi.org/mockjsdata/31083"
   },
   "test": {
     "apiOrigin": "//rapapi.org/mockjsdata/31083"
