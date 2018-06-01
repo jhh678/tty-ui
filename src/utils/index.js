@@ -93,7 +93,7 @@ export const sessionStore = {
    * @return {Object | String}
    */
   get(key) {
-    var value = window.sessionStorage.getItem(key)
+    let value = window.sessionStorage.getItem(key)
     if (!value) {
       return
     }
@@ -145,9 +145,9 @@ export const cookieStore = {
    * 获取cookie的方法
    */
   get(name) {
-    var arr = document.cookie.split('; ') // cookie是以键值对形式存在，用“分号空格” 隔开的，比如 a=1; b=2 ; c=3;
-    for (var i = 0, len = arr.length; i < len; i++) {
-      var arr2 = arr[i].split('=')
+    let arr = document.cookie.split('; ') // cookie是以键值对形式存在，用“分号空格” 隔开的，比如 a=1; b=2 ; c=3;
+    for (let i = 0, len = arr.length; i < len; i++) {
+      let arr2 = arr[i].split('=')
       if (arr2[0] === name) {
         return decodeURIComponent(arr2[1])
       }
@@ -166,9 +166,9 @@ export const cookieStore = {
    * 清空cookie的方法
    */
   clear() {
-    var keys = document.cookie.match(/[^ =;]+(?=\=)/g)
+    let keys = document.cookie.match(/[^ =;]+(?=\=)/g)
     if (keys) {
-      for (var i = keys.length; i--;) {
+      for (let i = keys.length; i--;) {
         document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
       }
     }
@@ -181,7 +181,7 @@ export const cookieStore = {
  */
 export const browser = (
   () => {
-    var u = navigator.userAgent
+    let u = navigator.userAgent
     return {
       trident: u.indexOf('Trident') > -1, // IE内核
       presto: u.indexOf('Presto') > -1, // opera内核
@@ -212,7 +212,7 @@ export const strTrim = (str) => {
  * @param {Object} object - 查找对象
  * @param {String} prop - 查找属性
  */
-export const getValueByPath = function (object, prop) {
+export const getValueByPath = (object, prop) => {
   prop = prop || ''
   const paths = prop.split('.')
   let current = object
@@ -235,7 +235,7 @@ export const getValueByPath = function (object, prop) {
  * @param {Object} node
  * @returns Boolean
  */
-export const isVNode = function (node) {
+export const isVNode = (node) => {
   return typeof node === 'object' && Object.prototype.hasOwnProperty.call(node, 'componentOptions')
 }
 
@@ -245,7 +245,7 @@ export const isVNode = function (node) {
  * @param {key} key 需要平扁化的 key
  * @returns Boolean
  */
-export const flattenTree = function (Arr, key) {
+export const flattenTree = (Arr, key) => {
   let arr = []
 
   function cycle(data) {
@@ -353,5 +353,148 @@ export const floatOpration = {
     baseNum3 = Number(num1.toString().replace('.', ''))
     baseNum4 = Number(num2.toString().replace('.', ''))
     return (baseNum3 / baseNum4) * Math.pow(10, baseNum2 - baseNum1)
+  }
+}
+
+export const scrollBar = {
+  /**
+   * 判断Dom元素是否有滚动条
+   * @param {node} el - Dom节点
+   * @returns {Object} - 返回水平和垂直方向是否有工滚动条
+   */
+  hasScroll(el) {
+    // test targets
+    let elems = el ? [el] : [document.documentElement, document.body]
+    let scrollX = false,
+      scrollY = false
+    for (let i = 0, len = elems.length; i < len; i++) {
+      let o = elems[i]
+      // test horizontal
+      let sl = o.scrollLeft
+      o.scrollLeft += (sl > 0) ? -1 : 1
+      o.scrollLeft !== sl && (scrollX = scrollX || true)
+      o.scrollLeft = sl
+      // test vertical
+      let st = o.scrollTop
+      o.scrollTop += (st > 0) ? -1 : 1
+      o.scrollTop !== st && (scrollY = scrollY || true)
+      o.scrollTop = st
+    }
+
+    return {
+      scrollX: scrollX,
+      scrollY: scrollY
+    }
+  },
+
+  /**
+   * 获取元素滚动条可滚动区域宽度或高度
+   * @returns {Number} - 返回滚动条宽度
+   */
+  getScrollAreaWidth(el) {
+    let scrollXWidth = 0,
+      scrollYHeith = 0
+    if (typeof el === 'undefined') {
+      let scrollWidth = document.documentElement.scrollWidth || document.body.scrollWidth
+      let clientWidth = document.documentElement.clientWidth || document.body.clientWidth
+      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+      scrollXWidth = scrollWidth - clientWidth
+      scrollYHeith = scrollHeight - clientHeight
+    } else {
+      if (el) {
+        scrollXWidth = el.scrollWidth - el.clientWidth
+        scrollYHeith = el.scrollHeight - el.clientHeight
+      }
+    }
+
+    return {
+      x: scrollXWidth,
+      y: scrollYHeith
+    }
+  },
+
+  /**
+   * 获取浏览器滚动条宽度
+   * @returns {Number} - 返回滚动条宽度
+   */
+  getWidth() {
+    let oP = document.createElement('p'),
+      styles = {
+        width: '100px',
+        height: '100px',
+        overflowY: 'scroll'
+      },
+      i, scrollBarWidth
+    for (i in styles) {
+      oP.style[i] = styles[i]
+    }
+    document.body.appendChild(oP)
+    scrollBarWidth = oP.offsetWidth - oP.clientWidth
+    oP.remove()
+    return scrollBarWidth
+  }
+}
+
+/**
+ * URL参数操作对象
+ */
+export const urlUtils = {
+  // 获取url参数
+  getQueryString: function (name, url) {
+    url = url || window.location.search
+    let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+    let r = url.substr(1).match(reg)
+    if (r != null) {
+      return unescape(r[2])
+    }
+    return null
+  },
+  // 对象转url参数
+  toQueryPair: function (key, value) {
+    if (typeof value === 'undefined') {
+      return key
+    }
+    return key + '=' + encodeURIComponent(value === null ? '' : String(value))
+  },
+  toQueryString: function (obj, joinStr) {
+    joinStr = joinStr || '&'
+    let ret = []
+    for (let key in obj) {
+      key = encodeURIComponent(key)
+      let values = obj[key]
+      if (values && values.constructor === Array) {
+        // 数组
+        let queryValues = []
+        for (let i = 0, len = values.length, value; i < len; i++) {
+          value = values[i]
+          queryValues.push(this.toQueryPair(key, value))
+        }
+        ret = ret.concat(queryValues)
+      } else {
+        // 字符串
+        ret.push(this.toQueryPair(key, values))
+      }
+    }
+    return ret.join(joinStr)
+  },
+  // 添加URL参数
+  updateURLParams: function (url, name, value) {
+    let r = url || location.href
+    if (r) {
+      value = encodeURIComponent(value)
+      let reg = new RegExp('(^|)' + name + '=([^&]*)(|$)')
+      let tmp = name + '=' + value
+      if (url.match(reg) !== null) {
+        r = url.replace(reg, tmp)
+      } else {
+        if (url.match('[\?]')) {
+          r = url + '&' + tmp
+        } else {
+          r = url + '?' + tmp
+        }
+      }
+    }
+    return r
   }
 }

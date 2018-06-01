@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:56:29
  * @Last Modified by: jhh678
- * @Last Modified time: 2018-05-15 14:59:33
+ * @Last Modified time: 2018-06-01 14:27:44
  */
 
 import Vue from 'vue'
@@ -620,14 +620,14 @@ router.beforeEach(async (to, from, next) => {
 })
 router.afterEach((to, from) => {
   if (to.meta.hasMaster) {
-    // if (to.path === '/') {
-    //   store.dispatch('updateTabIndex', 0)
-    //   return
-    // }
+    if (to.fullPath === '/') {
+      store.dispatch('updateTabIndex', 0)
+      return
+    }
 
     let tabs = store.state.openedTabs
     for (let i = 0, len = tabs.length; i < len; i++) {
-      if (tabs[i].path === to.path) {
+      if (tabs[i].path === to.fullPath) {
         store.dispatch('updateTabIndex', i)
         return
       }
@@ -636,8 +636,8 @@ router.afterEach((to, from) => {
       tabs.splice(1, 1)
     }
     tabs.push({
-      path: to.path,
-      name: to.meta.name || to.path
+      path: to.fullPath,
+      name: to.meta.name || to.fullPath
     })
     store.dispatch('updateTabIndex', store.state.openedTabs.length - 1)
   }

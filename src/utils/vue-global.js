@@ -2,7 +2,7 @@
  * @Author: jhh678
  * @Date: 2017-11-08 18:43:55
  * @Last Modified by: jhh678
- * @Last Modified time: 2017-11-09 10:15:34
+ * @Last Modified time: 2018-06-01 14:24:37
  */
 import Vue from 'vue'
 import router from '@/router'
@@ -31,10 +31,11 @@ Vue.prototype.$isPermission = (key) => {
 
 /**
  * 用于关闭tab标签页面
- * @param {String} [path=router.history.current.path] - 选传，默认为当前打开页面
+ * @param {String} [path=router.history.current.fullPath] - 选传，默认为当前打开页面
  * @returns {Boolean} - 页面成功关闭返回true，否则返回false
  */
-Vue.prototype.$closeTabPage = (path = router.history.current.path) => {
+Vue.prototype.$closeTabPage = (path = router.history.current.fullPath) => {
+  console.log(router.history)
   let pathIndex
   let hasPath = store.state.openedTabs.some(function (currentValue, index) {
     if (currentValue.path === path) {
