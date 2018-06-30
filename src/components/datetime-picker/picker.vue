@@ -2,7 +2,7 @@
   <b-input class="b-date-editor" :class="'b-date-editor--' + type" :readonly="readonly" :disabled="disabled" :size="size" v-clickoutside="handleClose"
     :placeholder="placeholder" @focus="handleFocus" @blur="handleBlur" @keydown.native="handleKeydown" :value="displayValue"
     @change.native="displayValue = $event.target.value" :validateEvent="false" ref="reference">
-    <i slot="icon" class="b-input__icon iconfont input-group-inner-addon" @click="handleClickIcon" :class="[showClose ? 'icon-close' : triggerClass]"
+    <i slot="icon" class="b-input__icon iconfont input-group-inner-addon" @click="handleClickIcon" :class="[showClose ? 'icon-close' : triggerClass, size ? 'input-' + size : '']"
       @mouseenter="handleMouseEnterIcon" @mouseleave="showClose = false" v-if="haveTrigger"></i>
   </b-input>
 </template>
